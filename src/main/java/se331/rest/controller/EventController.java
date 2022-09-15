@@ -95,14 +95,19 @@ public class EventController {
     public ResponseEntity<?> getEventLists(@RequestParam(value = "_limit",
             required = false)Integer perPage , @RequestParam(value = "_page",required = false)Integer page){
         perPage = perPage == null?eventList.size():perPage;
-       page = page ==null?1:page;
+       page = page ==null?4:page;
        Integer firstIndex = (page-1)*perPage;
        List<Event> output = new ArrayList<>();
+       try {
+
+
        for(int i = firstIndex;i<firstIndex + perPage;i++){
            output.add(eventList.get(i));
-
        }
        return  ResponseEntity.ok(output);
 
+    }catch (IndexOutOfBoundsException ex){
+           return ResponseEntity.ok(output);
+       }
     }
 }
