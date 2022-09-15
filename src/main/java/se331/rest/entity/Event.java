@@ -4,7 +4,7 @@ import lombok.Data;
 @Data
 @Builder
 public class Event {
-    long id;
+    Long id;
     String category;
     String title;
     String description;
