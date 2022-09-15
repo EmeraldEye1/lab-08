@@ -91,20 +91,9 @@ public class EventController {
     }
 
 
-    @GetMapping("events/{id}")
-    public  ResponseEntity<?> getEvent(@PathVariable("id")Long id){
-        Event output = null;
-        for(Event event :
-                eventList){
-            if (event.getId().equals(id)){
-                output = event;
-                break;
-            }
-        }
-        if(output != null){
-            return ResponseEntity.ok(output);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The given id is not found");
-        }
+    @GetMapping("events")
+    public  ResponseEntity<?> getEventLists(){
+        return  ResponseEntity.ok(eventList);
+
     }
 }
